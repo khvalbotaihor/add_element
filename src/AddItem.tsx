@@ -1,9 +1,7 @@
 import React, {ChangeEvent, KeyboardEvent, useState} from "react";
 
 type AddItemPropsType = {
-    title: string
-    id: string
-    addTask: (title: string, id: string) => void
+    addTask: (title: string) => void
 }
 export const AddItem = (props: AddItemPropsType) => {
 
@@ -13,7 +11,7 @@ export const AddItem = (props: AddItemPropsType) => {
     const addTask = () => {
         let newTitle = title.trim();
         if (newTitle !== "") {
-            props.addTask(newTitle, props.id);
+            props.addTask(newTitle);
             setTitle("");
         } else {
             setError("Title is required");
