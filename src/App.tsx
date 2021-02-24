@@ -55,6 +55,15 @@ function App() {
         // засетаем в стейт копию объекта, чтобы React отреагировал перерисовкой
         setTasks({...tasks});
     }
+    function addTodoList(title: string) {
+        let todoList : TodolistType= {id: v1(), title: title, filter:"all"};
+
+        setTodolists([todoList, ...todolists])
+        setTasks({
+            ...tasks,
+            [todoList.id]: []
+        })
+    }
 
     function changeStatus(id: string, isDone: boolean, todolistId: string) {
         //достанем нужный массив по todolistId:
@@ -88,7 +97,7 @@ function App() {
 
     return (
         <div className="App">
-            <AddItem addTask={()=>{}} />
+            <AddItem addTask={addTodoList} />
 
             {
                 todolists.map(tl => {
